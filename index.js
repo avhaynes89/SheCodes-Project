@@ -26,20 +26,15 @@ city = city.trim().toLowerCase();
 
 let temperature = weather[city].temp;
 let humidity = weather[city].humidity;
-let celciusTemp = Math.round(temperature);
+let celsiusTemp = Math.round(temperature);
+let fahrenheitTemp = Math.round((temperature * 9) / 5 + 32);
 
 if (weather[city] !== undefined) {
   alert(
-    "It is currently " +
-      celciusTemp +
-      " °C in " +
-      city +
-      " with a humidity of " +
-      humidity +
-      "%."
+    `It is currently ${celsiusTemp}°C (${fahrenheitTemp}°F) in ${city} with a humidity of ${humidity}%`
   );
 } else {
   alert(
-    "Sorry, we don't know the weather for this city, try going to https://www.google.com/search?q=weather+${city}"
+    `Sorry we don't know the weather for this city, try going to https://www.google.com/search?q=weather+${city}`
   );
 }
