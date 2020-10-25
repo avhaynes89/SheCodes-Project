@@ -47,18 +47,15 @@ function showWeather(response) {
     response.data.main.temp
   );
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
-
   document.querySelector("#high-temp").innerHTML = Math.round(
     response.data.main.temp_max
   );
   document.querySelector("#low-temp").innerHTML = Math.round(
     response.data.main.temp_min
   );
-
   document.querySelector("#feels-like").innerHTML = Math.round(
     response.data.main.feels_like
   );
-
   document.querySelector("#wind-speed").innerHTML = response.data.wind.speed;
 }
 
