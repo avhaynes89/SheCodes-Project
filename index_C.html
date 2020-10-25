@@ -38,7 +38,8 @@
               </form>
 
               <br />
-              <h2 id="city"></h2>
+              <h2 class="city-field" id="city"></h2>
+              <h3 class="date-time-field" id="dateTime"></h3>
             </div>
             <div class="col-6 text-right">
               <button type="button" class="btn btn-info" id="current-button">
@@ -51,11 +52,17 @@
           <div class="row">
             <div class="col-4">
               <ul>
-                <li id="feels-like"></li>
+                <li class="feels-like-field">
+                  It currently feels like <span id="feels-like"></span>°C.
+                </li>
 
-                <li id="humidity"></li>
+                <li>
+                  <strong> Humidity:</strong> <span id="humidity"></span>%
+                </li>
 
-                <li id="wind-speed"></li>
+                <li>
+                  <strong>Wind Speed:</strong> <span id="wind-speed"></span>km/h
+                </li>
               </ul>
             </div>
             <div class="col-4 text-right">
@@ -67,9 +74,9 @@
               />
             </div>
             <div class="col-4">
-              <h1 id="current-temperature"></h1>
-              <h3 id="high-temp"></h3>
-              <h3 id="low-temp"></h3>
+              <h1><span id="current-temperature"></span>°C</h1>
+              <h3><strong>High:</strong><span id="high-temp"></span>°C</h3>
+              <h3><strong>Low:</strong><span id="low-temp"></span>°C</h3>
             </div>
           </div>
           <div class="row">
