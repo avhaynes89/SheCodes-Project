@@ -8,6 +8,21 @@ h1 {
   font-weight: 900;
 }
 
+ul li {
+  list-style: none;
+}
+body {
+  background: #e3fdfd;
+}
+h3 {
+  font-size: smaller;
+}
+.container {
+  display: center;
+  margin: 25px 50px;
+  height: 100%;
+  width: 100%;
+}
 .day {
   font-weight: 700;
 }

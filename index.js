@@ -1,40 +1,95 @@
-let weather = {
-  paris: {
-    temp: 19.7,
-    humidity: 80,
-  },
-  tokyo: {
-    temp: 17.3,
-    humidity: 50,
-  },
-  lisbon: {
-    temp: 30.2,
-    humidity: 20,
-  },
-  "san francisco": {
-    temp: 20.9,
-    humidity: 100,
-  },
-  moscow: {
-    temp: -5,
-    humidity: 20,
-  },
-};
+let now = new Date();
 
-let city = prompt("Enter a city");
-city = city.trim().toLowerCase();
+let currentDate = document.querySelector("h3");
 
-let temperature = weather[city].temp;
-let humidity = weather[city].humidity;
-let celsiusTemp = Math.round(temperature);
-let fahrenheitTemp = Math.round((temperature * 9) / 5 + 32);
-
-if (weather[city] !== undefined) {
-  alert(
-    `It is currently ${celsiusTemp}°C (${fahrenheitTemp}°F) in ${city} with a humidity of ${humidity}%`
-  );
-} else {
-  alert(
-    `Sorry we don't know the weather for this city, try going to https://www.google.com/search?q=weather+${city}`
-  );
+let hour = now.getHours();
+if (hour < 10) {
+  hour = `0${hour}`;
 }
+let minutes = now.getMinutes();
+if (minutes < 10) {
+  minutes = `0${minutes}`;
+}
+let days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+let day = days[now.getDay()];
+
+currentDate.innerHTML = `${day} ${hour}:${minutes}`;
+
+function changeCelcius(event) {
+  event.preventDefault();
+  let celciusTemperature = document.querySelector("#current-temperature");
+  celciusTemperature.innerHTML = "18°C";
+}
+
+function changeFahrenheit(event) {
+  event.preventDefault();
+  let fahrenheitTemperature = document.querySelector("#current-temperature");
+  fahrenheitTemperature.innerHTML = "72°F";
+}
+
+let celciusClick = document.querySelector("#celcius-link");
+celciusClick.addEventListener("click", changeCelcius);
+
+let fahrenheitClick = document.querySelector("#fahrenheit-link");
+fahrenheitClick.addEventListener("click", changeFahrenheit);
+
+function showWeather(response) {
+  document.querySelector("#city").innerHTML = response.data.name;
+  document.querySelector("#current-temperature").innerHTML = Math.round(
+    response.data.main.temp
+  );
+  document.querySelector("#humidity").innerHTML = response.data.main.humidity;
+
+  document.querySelector("#high-temp").innerHTML = Math.round(
+    response.data.main.temp_max
+  );
+  document.querySelector("#low-temp").innerHTML = Math.round(
+    response.data.main.temp_min
+  );
+
+  document.querySelector("#feels-like").innerHTML = Math.round(
+    response.data.main.feels_like
+  );
+
+  document.querySelector("#wind-speed").innerHTML = response.data.wind.speed;
+}
+
+function searchCity(city) {
+  let apiKey = "4bf0fe9a3eb704aa29ec59086a3a7318";
+  let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(url).then(showWeather);
+}
+
+function citySubmit(event) {
+  event.preventDefault();
+  let city = document.querySelector("#city-input").value;
+  searchCity(city);
+}
+
+function fetchPosition(position) {
+  let apiKey = "4bf0fe9a3eb704aa29ec59086a3a7318";
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+  axios.get(url).then(showWeather);
+}
+function getCurrentLocation(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(fetchPosition);
+}
+
+let searchForm = document.querySelector("#city-search");
+searchForm.addEventListener("submit", citySubmit);
+
+let currentButton = document.querySelector("#current-button");
+currentButton.addEventListener("click", getCurrentLocation);
+
+searchCity("Chicago");

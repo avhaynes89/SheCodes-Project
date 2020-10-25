@@ -13,35 +13,50 @@
       href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
-    <script src="index.js"></script>
-
+    <link rel="stylesheet" href="src/styles.css" />
+    <script src="src/index.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>SheCodes Final Project</title>
   </head>
+
   <body>
-    <div class="container">
+    <div class="container p-lg">
       <div class="card shadow p-3 mb-5 bg-white rounded">
         <div class="card-body">
           <div class="row">
             <div class="col-6">
-              <input
-                type="text"
-                placeholder="Search a city"
-                autocomplete="off"
-                class="rounded-sm w-75"
-              /><br />
-              <p><strong>Today | Monday, September 21</strong></p>
+              <form id="city-search">
+                <input
+                  id="city-input"
+                  type="search"
+                  placeholder="Type a city..."
+                  autofocus="on"
+                  autocomplete="off"
+                  class="rounded-sm w-75"
+                />
+                <input type="submit" value="Search" class="btn btn-light" />
+              </form>
+
+              <br />
+              <h2 id="city"></h2>
             </div>
-            <div class="col-6 text-right"><h5>°C | °F</h5></div>
+            <div class="col-6 text-right">
+              <button type="button" class="btn btn-info" id="current-button">
+                Current
+              </button>
+              <a href="#" id="celcius-link">°C</a> |
+              <a href="#" id="fahrenheit-link">°F</a>
+            </div>
           </div>
           <div class="row">
             <div class="col-4">
-              <strong>Percipication:</strong> 10%
-              <br />
-              <strong>Humidity:</strong> 67%
-              <br />
-              <strong>Wind:</strong> 10mph
-              <br />
+              <ul>
+                <li id="feels-like"></li>
+
+                <li id="humidity"></li>
+
+                <li id="wind-speed"></li>
+              </ul>
             </div>
             <div class="col-4 text-right">
               <img
@@ -52,8 +67,9 @@
               />
             </div>
             <div class="col-4">
-              <h1>19°C</h1>
-              <h3>22°C | 12°C</h3>
+              <h1 id="current-temperature"></h1>
+              <h3 id="high-temp"></h3>
+              <h3 id="low-temp"></h3>
             </div>
           </div>
           <div class="row">
