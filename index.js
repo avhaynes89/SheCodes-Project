@@ -1,28 +1,27 @@
-let now = new Date();
+function formatDate(date) {
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
 
-let currentDate = document.querySelector("h3");
+  let dayIndex = date.getDay();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[dayIndex];
 
-let hour = now.getHours();
-if (hour < 10) {
-  hour = `0${hour}`;
+  return `${day} ${hours}:${minutes}`;
 }
-let minutes = now.getMinutes();
-if (minutes < 10) {
-  minutes = `0${minutes}`;
-}
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-let day = days[now.getDay()];
-
-currentDate.innerHTML = `${day} ${hour}:${minutes}`;
-
 function changeCelcius(event) {
   event.preventDefault();
   let celciusTemperature = document.querySelector("#current-temperature");
@@ -47,15 +46,18 @@ function showWeather(response) {
     response.data.main.temp
   );
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
+
   document.querySelector("#high-temp").innerHTML = Math.round(
     response.data.main.temp_max
   );
   document.querySelector("#low-temp").innerHTML = Math.round(
     response.data.main.temp_min
   );
+
   document.querySelector("#feels-like").innerHTML = Math.round(
     response.data.main.feels_like
   );
+
   document.querySelector("#wind-speed").innerHTML = response.data.wind.speed;
 }
 
@@ -82,6 +84,9 @@ function getCurrentLocation(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(fetchPosition);
 }
+let dateElement = document.querySelector("#dateTime");
+let currentTime = new Date();
+dateElement.innerHTML = formatDate(currentTime);
 
 let searchForm = document.querySelector("#city-search");
 searchForm.addEventListener("submit", citySubmit);
