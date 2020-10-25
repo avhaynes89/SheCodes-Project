@@ -18,8 +18,8 @@ h3 {
   font-size: smaller;
 }
 .container {
-  display: center;
-  margin: 25px 50px;
+  display: block;
+  margin: 0 auto;
   height: 100%;
   width: 100%;
 }
