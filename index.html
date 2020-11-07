@@ -38,8 +38,15 @@
               </form>
 
               <br />
+              <div class="row">
+                <div class="col-6">
               <h2 class="city-field" id="city"></h2>
               <h3 class="date-time-field" id="dateTime"></h3>
+              </div>
+              <div class="col-6">
+                
+              </div>
+              </div>
             </div>
             <div class="col-6 text-right">
               <button type="button" class="btn btn-info" id="current-button">
@@ -50,34 +57,51 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-4">
-              <ul>
+            <div class="col-6">
+              <div class="clearfix current-weather-element">
+                <img 
+              src="images/sun.png" 
+              alt="sun" 
+              width="75px " 
+              class="current-weather-img float-left" />
+            
+              <div class="float-left">
+                <h1>
+                  <span id="current-temperature"></span>°C
+                </h1>
+              <h3>
+                <strong>High: </strong><span id="high-temp"></span>°C
+              </h3>
+              <h3>
+                <strong>Low: </strong><span id="low-temp"></span>°C
+              </h3>
+              </div>
+            
+            </div>
+            </div>
+            <div class="col-6">
+              <div class="clearfix current-weather-conditions">
+                <div class="float-left">
+                  <ul>
                 <li class="feels-like-field">
                   It currently feels like <span id="feels-like"></span>°C.
                 </li>
-
                 <li>
-                  <strong> Humidity:</strong> <span id="humidity"></span>%
+                  <strong>Percipitation: </strong><span id="percipitation"></span>%
                 </li>
 
                 <li>
-                  <strong>Wind Speed:</strong> <span id="wind-speed"></span>km/h
+                   <strong>Humidity: </strong><span id="humidity"></span>%
+                </li>
+
+                <li>
+                  <strong>Wind: </strong><span id="wind-speed"></span>km/h
                 </li>
               </ul>
+              </div>
+              </div>
             </div>
-            <div class="col-4 text-right">
-              <img
-                src="images/sun.png"
-                alt="sun"
-                width="100px "
-                class="current-weather-img"
-              />
-            </div>
-            <div class="col-4">
-              <h1><span id="current-temperature"></span>°C</h1>
-              <h3><strong>High:</strong><span id="high-temp"></span>°C</h3>
-              <h3><strong>Low:</strong><span id="low-temp"></span>°C</h3>
-            </div>
+            
           </div>
           <div class="row">
             <div class="col-2 text-center day">Tues</div>

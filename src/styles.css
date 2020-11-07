@@ -34,6 +34,7 @@ li {
   padding: 20px;
   border-radius: 10px;
 }
+
 .date-time-field {
   font-size: 20px;
   margin-bottom: 5%;
@@ -43,4 +44,10 @@ li {
 }
 .temp {
   font-weight: 300;
+}
+.current-weather-element img {
+  margin-right: 20px;
+}
+.feels-like-field {
+  font-size: 30px;
 }
