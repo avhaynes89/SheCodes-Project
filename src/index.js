@@ -28,22 +28,18 @@ function changeCelcius(event) {
   celciusTemperature.innerHTML = "18°C";
 }
 
-function changeFahrenheit(event) {
-  event.preventDefault();
-  let fahrenheitTemperature = document.querySelector("#current-temperature");
-  fahrenheitTemperature.innerHTML = "72°F";
+function showFahrenheitTemp(event) {
+  event.preventDefault(); 
+  let fahrenheitTemperature = (celciusTemperature*9)/5+32;
+  document.querySelector("#current-temperature").innerHTML = Math.round(fahrenheitTemperature);
+
 }
 
-let celciusClick = document.querySelector("#celcius-link");
-celciusClick.addEventListener("click", changeCelcius);
-
-let fahrenheitClick = document.querySelector("#fahrenheit-link");
-fahrenheitClick.addEventListener("click", changeFahrenheit);
-
 function showWeather(response) {
+  celciusTemperature = response.data.main.temp;
   document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#current-temperature").innerHTML = Math.round(
-    response.data.main.temp
+   celciusTemperature
   );
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
 
@@ -96,5 +92,13 @@ searchForm.addEventListener("submit", citySubmit);
 
 let currentButton = document.querySelector("#current-button");
 currentButton.addEventListener("click", getCurrentLocation);
+
+let celciusTemperature = null
+
+let celciusClick = document.querySelector("#celcius-link");
+celciusClick.addEventListener("click", changeCelcius);
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", showFahrenheitTemp);
 
 searchCity("Chicago");
