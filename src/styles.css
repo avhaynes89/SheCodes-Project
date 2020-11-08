@@ -54,3 +54,12 @@ li {
 .description {
   text-transform: capitalize;
 }
+.active {
+  color: black;
+  cursor: default;
+  font-weight: bold;
+}
+
+.active:hover {
+  text-decoration: none;
+}

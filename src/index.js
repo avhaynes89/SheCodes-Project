@@ -22,14 +22,17 @@ function formatDate(date) {
 
   return `${day} ${hours}:${minutes}`;
 }
-function changeCelcius(event) {
+function showCelciusTemp(event) {
   event.preventDefault();
-  let celciusTemperature = document.querySelector("#current-temperature");
-  celciusTemperature.innerHTML = "18°C";
+  celciusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  document.querySelector("#current-temperature").innerHTML = Math.round(celciusTemperature);
 }
 
 function showFahrenheitTemp(event) {
   event.preventDefault(); 
+  celciusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
   let fahrenheitTemperature = (celciusTemperature*9)/5+32;
   document.querySelector("#current-temperature").innerHTML = Math.round(fahrenheitTemperature);
 
@@ -95,8 +98,8 @@ currentButton.addEventListener("click", getCurrentLocation);
 
 let celciusTemperature = null
 
-let celciusClick = document.querySelector("#celcius-link");
-celciusClick.addEventListener("click", changeCelcius);
+let celciusLink = document.querySelector("#celcius-link");
+celciusLink.addEventListener("click", showCelciusTemp);
 
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", showFahrenheitTemp);
