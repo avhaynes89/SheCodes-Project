@@ -24,7 +24,7 @@
       <div class="card shadow p-3 mb-5 bg-white rounded">
         <div class="card-body">
           <div class="row">
-            <div class="col-6">
+            <div class="col">
               <form id="city-search">
                 <input
                   id="city-input"
@@ -32,30 +32,29 @@
                   placeholder="Type a city..."
                   autofocus="on"
                   autocomplete="off"
-                  class="rounded-sm w-75"
+                  class="form-control"
                 />
+                </div>
+                <div class="col">
                 <input type="submit" value="Search" class="btn btn-light" />
               </form>
-
-              <br />
-              <div class="row">
-                <div class="col-6">
-              <h2 class="city-field" id="city"></h2>
-              <h3>Last updated: <span class="date-time-field" id="dateTime"></span></h3>
-              </div>
-              <div class="col-6">
-                
-              </div>
-              </div>
             </div>
-            <div class="col-6 text-right">
+            
+            <div class="col text-right">
               <button type="button" class="btn btn-info" id="current-button">
                 Current
               </button>
               <a href="#" id="celcius-link">°C</a> |
               <a href="#" id="fahrenheit-link">°F</a>
+              </div>
             </div>
-          </div>
+          
+            <div class="row">
+              <div class="col-6">
+                <h2 class="city-field" id="city"></h2>
+                <h3>Last updated: <span class="date-time-field" id="dateTime"></span></h3>
+              </div>
+            </div>
           <div class="row">
             <div class="col-6">
               <div class="clearfix current-weather-element">
@@ -155,6 +154,8 @@
             </div>
           </div>
         </div>
+      </div>
+      </div>
       </div>
       <small>
         <a href="https://github.com/avhaynes89/SheCodes-Project" target="_blank"
