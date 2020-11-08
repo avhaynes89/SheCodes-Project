@@ -1,6 +1,6 @@
 body {
   font-family: "Lato", sans-serif;
-  background: #e3fdfd;
+  background: #e0ece4;
 }
 p {
   font-size: larger;
@@ -28,13 +28,16 @@ li {
 
 .container {
   display: block;
-  margin: 30px auto;
+  margin-top: 30px;
+  margin-bottom: 0 auto;
   height: 60%;
   width: 60%;
   padding: 20px;
   border-radius: 10px;
 }
-
+.card-body {
+  background: #f7f2e7;
+}
 .date-time-field {
   font-size: 16px;
   margin-bottom: 5%;
@@ -88,4 +91,8 @@ li {
   height: auto;
   line-height: 15px;
   white-space: nowrap;
+}
+.open-sourced {
+  display: block;
+  margin: 5px auto;
 }
