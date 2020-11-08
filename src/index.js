@@ -40,6 +40,9 @@ function showCelciusTemp(event) {
   celciusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
   document.querySelector("#current-temperature").innerHTML = Math.round(celciusTemperature);
+   document.querySelector("#feels-like").innerHTML = Math.round(feelsLikeCelciusTemperature);
+ document.querySelector("#high-temp").innerHTML= Math.round(highTempCelcius);
+ document.querySelector("#low-temp").innerHTML=Math.round(lowTempCelcius);
 }
 
 function showFahrenheitTemp(event) {
@@ -48,13 +51,21 @@ function showFahrenheitTemp(event) {
   fahrenheitLink.classList.add("active");
   let fahrenheitTemperature = (celciusTemperature*9)/5+32;
   let feelsLikeFahrenheitTemperature = (feelsLikeCelciusTemperature*9)/5+32;
+  let highTempFahrenheit = (highTempCelcius*9)/5+32;
+  let lowTempFahrenheit = (lowTempCelcius*9)/5+32;
   document.querySelector("#current-temperature").innerHTML = Math.round(fahrenheitTemperature);
-document.querySelector("#feels-like").innerHTML = Math.round(feelsLikeFahrenheitTemperature);
+ document.querySelector("#feels-like").innerHTML = Math.round(feelsLikeFahrenheitTemperature);
+ document.querySelector("#high-temp").innerHTML= Math.round(highTempFahrenheit);
+ document.querySelector("#low-temp").innerHTML=Math.round(lowTempFahrenheit);
+ 
 }
 
 function showWeather(response) {
   celciusTemperature = response.data.main.temp;
   feelsLikeCelciusTemperature =response.data.main.feels_like;
+  highTempCelcius = response.data.main.temp_max;
+  lowTempCelcius = response.data.main.temp_min;
+  windSpeed = (response.data.wind.speed)*0.62137119223733;
   document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#current-temperature").innerHTML = Math.round(
    celciusTemperature
