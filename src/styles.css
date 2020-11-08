@@ -51,3 +51,7 @@ li {
 .feels-like-field {
   font-size: 30px;
 }
+.description {
+  text-transform: capitalize;
+  font-weight: bold;
+}

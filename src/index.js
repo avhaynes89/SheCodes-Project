@@ -58,7 +58,8 @@ function showWeather(response) {
     response.data.main.feels_like
   );
 
-  document.querySelector("#wind-speed").innerHTML = response.data.wind.speed;
+  document.querySelector("#wind-speed").innerHTML = Math.round(response.data.wind.speed);
+  document.querySelector("#description").innerHTML=response.data.weather[0].description;
 }
 
 function searchCity(city) {
