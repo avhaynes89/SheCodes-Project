@@ -34,12 +34,14 @@ function showFahrenheitTemp(event) {
   celciusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
   let fahrenheitTemperature = (celciusTemperature*9)/5+32;
+  let feelsLikeFahrenheitTemperature = (feelsLikeCelciusTemperature*9)/5+32;
   document.querySelector("#current-temperature").innerHTML = Math.round(fahrenheitTemperature);
-
+document.querySelector("#feels-like").innerHTML = Math.round(feelsLikeFahrenheitTemperature);
 }
 
 function showWeather(response) {
   celciusTemperature = response.data.main.temp;
+  feelsLikeCelciusTemperature =response.data.main.feels_like;
   document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#current-temperature").innerHTML = Math.round(
    celciusTemperature
@@ -54,7 +56,7 @@ function showWeather(response) {
   );
 
   document.querySelector("#feels-like").innerHTML = Math.round(
-    response.data.main.feels_like
+    feelsLikeCelciusTemperature
   );
 
   document.querySelector("#wind-speed").innerHTML = Math.round(response.data.wind.speed);
@@ -97,6 +99,7 @@ let currentButton = document.querySelector("#current-button");
 currentButton.addEventListener("click", getCurrentLocation);
 
 let celciusTemperature = null
+let feelsLikeCelciusTemperature = null 
 
 let celciusLink = document.querySelector("#celcius-link");
 celciusLink.addEventListener("click", showCelciusTemp);
