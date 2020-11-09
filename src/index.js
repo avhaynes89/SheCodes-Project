@@ -133,6 +133,7 @@ function getCurrentLocation(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(fetchPosition);
 }
+
 let dateElement = document.querySelector("#dateTime");
 let currentTime = new Date();
 dateElement.innerHTML = formatDate(currentTime);
