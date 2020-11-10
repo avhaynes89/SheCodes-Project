@@ -39,26 +39,85 @@ function showCelciusTemp(event) {
   event.preventDefault();
   celciusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
-  document.querySelector("#current-temperature").innerHTML = Math.round(celciusTemperature);
-   document.querySelector("#feels-like").innerHTML = Math.round(feelsLikeCelciusTemperature);
- document.querySelector("#high-temp").innerHTML= Math.round(highTempCelcius);
- document.querySelector("#low-temp").innerHTML=Math.round(lowTempCelcius);
+  document.querySelector("#current-temperature").innerHTML = Math.round(
+    celciusTemperature
+  );
+  document.querySelector("#feels-like").innerHTML = Math.round(
+    feelsLikeCelciusTemperature
+  );
+  document.querySelector("#high-temp").innerHTML = Math.round(highTempCelcius);
+  document.querySelector("#low-temp").innerHTML = Math.round(lowTempCelcius);
+
+  let forecastMax = document.querySelectorAll(".forecast-max");
+
+  forecastMax.forEach(function (item) {
+    // grabbing the current value to convert
+    let currentTemp = item.innerHTML;
+
+    // convert to Fahrenheit
+    item.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);
+  });
+
+  let forecastMin = document.querySelectorAll(".forecast-min");
+
+  forecastMin.forEach(function (item) {
+    // grabbing the current value to convert
+    let currentTemp = item.innerHTML;
+
+    // convert to Fahrenheit
+    item.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);
+  });
+
+  // Handle the events to avoid duplicate on click
+  celciusLink.removeEventListener("click", showCelciusTemp);
+  fahrenheitLink.addEventListener("click", showFahrenheitTemp);
 }
 
 function showFahrenheitTemp(event) {
-  event.preventDefault(); 
+  event.preventDefault();
   celciusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
-  let fahrenheitTemperature = (celciusTemperature*9)/5+32;
-  let feelsLikeFahrenheitTemperature = (feelsLikeCelciusTemperature*9)/5+32;
-  let highTempFahrenheit = (highTempCelcius*9)/5+32;
-  let lowTempFahrenheit = (lowTempCelcius*9)/5+32;
-  document.querySelector("#current-temperature").innerHTML = Math.round(fahrenheitTemperature);
- document.querySelector("#feels-like").innerHTML = Math.round(feelsLikeFahrenheitTemperature);
- document.querySelector("#high-temp").innerHTML= Math.round(highTempFahrenheit);
- document.querySelector("#low-temp").innerHTML=Math.round(lowTempFahrenheit);
- 
+  let fahrenheitTemperature = (celciusTemperature * 9) / 5 + 32;
+  let feelsLikeFahrenheitTemperature =
+    (feelsLikeCelciusTemperature * 9) / 5 + 32;
+  let highTempFahrenheit = (highTempCelcius * 9) / 5 + 32;
+  let lowTempFahrenheit = (lowTempCelcius * 9) / 5 + 32;
+  document.querySelector("#current-temperature").innerHTML = Math.round(
+    fahrenheitTemperature
+  );
+  document.querySelector("#feels-like").innerHTML = Math.round(
+    feelsLikeFahrenheitTemperature
+  );
+  document.querySelector("#high-temp").innerHTML = Math.round(
+    highTempFahrenheit
+  );
+  document.querySelector("#low-temp").innerHTML = Math.round(lowTempFahrenheit);
+
+  let forecastMax = document.querySelectorAll(".forecast-max");
+
+  forecastMax.forEach(function (item) {
+    // grabbing the current value to convert
+    let currentTemp = item.innerHTML;
+
+    // convert to Fahrenheit
+    item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
+  });
+
+  let forecastMin = document.querySelectorAll(".forecast-min");
+
+  forecastMin.forEach(function (item) {
+    // grabbing the current value to convert
+    let currentTemp = item.innerHTML;
+
+    // convert to Fahrenheit
+    item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
+  });
+
+  // Handle the events to avoid duplicate on click
+  celciusLink.addEventListener("click", showCelciusTemp);
+  fahrenheitLink.removeEventListener("click", showFahrenheitTemp);
 }
+
 
 function showWeather(response) {
   celciusTemperature = response.data.main.temp;
@@ -94,17 +153,24 @@ function displayForecast(response) {
   forecastElement.innerHTML = null;
   let forecast = null;
   for (let index = 0; index < 6; index++) {
-      forecast = response.data.list[index];
-      forecastElement.innerHTML+= `
+    forecast = response.data.list[index];
+    forecastElement.innerHTML += `
             <div class="col-2">
                 <h3>
-                    ${formatHours(forecast.dt*1000)}
+                    ${formatHours(forecast.dt * 1000)}
                 </h3>
-                <img src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="">
+                <img src="http://openweathermap.org/img/wn/${
+                  forecast.weather[0].icon
+                }@2x.png" alt="">
                 <div class="weather-forecast-temperature">
-                    <strong>${Math.round(forecast.main.temp_max)}°</strong> | ${Math.round(forecast.main.temp_min)}°
+                    <strong><span class="forecast-max">${Math.round(
+                      forecast.main.temp_max
+                    )}</span>°</strong> | <span class="forecast-min">${Math.round(
+      forecast.main.temp_min
+    )}</span>°
                 </div>
-            </div>`;}
+            </div>`;
+  }
 }
 
 function searchCity(city) {
